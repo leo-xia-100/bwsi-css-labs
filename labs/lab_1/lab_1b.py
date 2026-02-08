@@ -9,7 +9,7 @@ and prints the result to the terminal window.
 
 """
 
-def simple_calculator(operation: str, num1: float, num2: float) -> float:
+def simple_calculator(operation: str, num1: float, num2: float):
     """
     Function that takes in two numbers and an operation (add, subtract, multiply, divide),
     then performs the operation on the two numbers and returns the result.
@@ -34,17 +34,36 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
             return num1 / num2
         else:
             raise ValueError("Cannot divide by zero.")
-    else:
-        raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
+    # else:
+    #     raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
+    
+def sanitize_number(prompt: str) -> float:
+    while True:
+        try:
+            number = float(input(prompt))
+            return(number)
+        except ValueError:
+            print("Please put in a number")
+
+def sanitize_operation(prompt):
+    while True:
+        try:
+            operator = input(prompt).strip().lower()
+            if(operator == "add" or operator == "subtract" or operator == "multiply" or operator == "divide"):
+                return(operator)
+            else:
+                raise ValueError("Invalid Operation")
+        except ValueError:
+            print("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
 
 def main():
     
     print(f"===== Simple Calculator =====")
 
     # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    num1 = sanitize_number("Enter the first number: ")
+    num2 = sanitize_number("Enter the second number: ")
+    operation = sanitize_operation("Enter the operation (add, subtract, multiply, divide): ")
 
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)

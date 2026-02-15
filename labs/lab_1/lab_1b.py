@@ -52,7 +52,7 @@ def sanitize_operation(prompt):
             if(operator == "add" or operator == "subtract" or operator == "multiply" or operator == "divide"):
                 return(operator)
             else:
-                raise ValueError("Invalid Operation")
+                raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
         except ValueError:
             print("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
 
